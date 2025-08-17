@@ -1,17 +1,13 @@
 from queue import Queue   
    
-#Function to push an element into stack using two queues.
 def push(x):
     
-    # global declaration
     global queue_1
     global queue_2
     queue_1.put(x)
 
-#Function to pop an element from stack using two queues.     
 def pop():
     
-    # global declaration
     global queue_1
     global queue_2
     
