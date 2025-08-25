@@ -1,29 +1,30 @@
 class Solution:
     def maximizeMedian(self, arr, k):
-        arr.sort()
         n = len(arr)
-        idx = (n - 1) // 2
+        inx = (n - 1) // 2
+        arr.sort()
 
-        def canMake(mid):
+        def check(mid):
             diff = 0
-            for i in range(idx, n):
-                if mid >= arr[i]:
+            for i in range(inx, n):
+                if arr[i] < mid:
                     diff += mid - arr[i]
                 if diff > k:
                     return False
             return True
-            
-        l = arr[idx]
-        r = arr[-1] + k
+
+        l, r = arr[inx], arr[inx] + k
+        ans = arr[inx]
 
         while l <= r:
             mid = (l + r) // 2
-            if canMake(mid):
+            if check(mid):
+                ans = mid
                 l = mid + 1
             else:
                 r = mid - 1
-            
-        if n % 2 == 1:
-            return r
-            
-        return (r + max(r, arr[idx + 1])) // 2
+
+        if n % 2:
+            return ans
+        else:
+            return (ans + max(ans, arr[inx + 1])) // 2
