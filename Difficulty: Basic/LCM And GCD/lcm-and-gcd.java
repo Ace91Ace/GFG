@@ -1,13 +1,13 @@
 class Solution {
+    public static int gcdd(int a, int b){
+            if (b==0){
+                return a;
+            }
+            return gcdd(b, a%b);
+        }
     public static int[] lcmAndGcd(int a, int b) {
         // code here
-        int x = Math.max(a, b), y = Math.min(a, b);
-        while(y != 0){
-            int temp = y;
-            y =  x%y;
-            x = temp;
-        }
-        int gcd = x;
+        int gcd = gcdd(a, b);
         int lcm = (int)((a*b)/gcd);
         
         int[] res = {lcm, gcd};
